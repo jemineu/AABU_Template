@@ -1,0 +1,429 @@
+%%% COMPILE IT BY LUALATEX TO MAKE ARABIC TEXT BE COMPILED!!
+
+\RequirePackage{fix-cm}  %size by cm
+
+\documentclass[12pt,a4paper,oneside]{book} %begin book/A4/two sided
+
+\usepackage{amsthm} 		%math
+\usepackage{amsmath} 	%packages
+\usepackage{amsfonts} 	%for latex 
+\usepackage{amssymb}		%from ams
+\usepackage{mathtools}	%mathtools
+
+\usepackage[width=150mm,top=25mm,bottom=25mm]{geometry} %set margins
+
+\theoremstyle{definition}
+\newtheorem*{remark}{Remark}							%define
+\newtheorem{theorem}{Theorem}[chapter]				%new
+\newtheorem{corollary}[theorem]{Corollary}			%customization
+\newtheorem{lemma}[theorem]{Lemma}					%commands
+\newtheorem{exe}[theorem]{Example}					%for
+\newtheorem{prop}[theorem]{Proposition}				%mathematical
+\newtheorem{definition}[theorem]{Definition}			%concepts
+\newtheorem{problem}{Problem}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\newcommand{\F}{{\theta_{F}}}			%define
+\newcommand{\M}{{\theta_{M}}}			%small
+\newcommand{\N}{{\theta_{N}}}			%command
+\newcommand{\h}{{\theta_{H}}}			%for
+\newcommand{\A}{{\theta_{A}}}			%long ones
+
+\usepackage[Glenn]{fncychap} %chapter page style
+\pagestyle{plain}				%plain page styles/numbering on the buttom of pages
+
+\usepackage[innercaption]{sidecap}	%images
+\usepackage{graphicx}				%config
+
+\usepackage{caption}				%image caption
+\usepackage{float}				%image position
+
+\usepackage{textcomp}			%some text symbols
+
+\renewcommand{\baselinestretch}{1.5}	%between lines space
+
+\usepackage[notlot]{tocbibind}   % no need for \addcontentsline for the table of content and references
+
+\usepackage{polyglossia}									%to use
+    \setdefaultlanguage{english}							%english
+        \newfontfamily\englishfont{Times New Roman}		%with the standard font
+    \setotherlanguage{arabic}								%arabic
+        \newfontfamily\arabicfont[Script=Arabic]{Arial}	%with that too
+
+\usepackage{aliascnt}										%to
+\newaliascnt{eqfloat}{equation}								%add
+\newfloat{eqfloat}{h}{eqflts}								%caption
+\floatname{eqfloat}{Equation}								%for
+\newcommand*{\ORGeqfloat}{}									%equations
+\let\ORGeqfloat\eqfloat										%%..
+\def\eqfloat{%												%%..
+  \let\ORIGINALcaption\caption								%%..
+  \def\caption{%											%%..
+    \addtocounter{equation}{-1}%							%%..
+    \ORIGINALcaption										%%..
+  }%														%%..
+  \ORGeqfloat												%%..
+}															%%..
+%
+
+\usepackage[export]{adjustbox}								%floating
+
+\usepackage{lmodern}										%fonts package
+
+\newcommand{\size}[2]{{\fontsize{#1}{0}\selectfont#2}} %command for font size
+\newenvironment{sizepar}[2]							    %command for
+ {\par\fontsize{#1}{#2}\selectfont}					    %paragraph
+ {\par}												    %font size
+
+\usepackage{fancyhdr}						  			%use fancy headers
+\fancyhead{}											%set fancy headers
+\renewcommand{\headrulewidth}{0pt}						%set rule width
+
+\fancyfoot{}											%
+\fancyfoot[C]{
+\footnotesize{ \textsuperscript{\textcopyright} Copyrights by (Students name) | AABU, Mafraq, 2021}
+}													%
+\renewcommand\footrulewidth{0pt}						%
+
+\fancypagestyle{Form1}{% <===========================%define page style name
+  \fancyhf{}% <======================================%== Clear header/footer
+\renewcommand{\headrulewidth}{0pt}					%
+
+  \fancyhead{}	%
+  \fancyfoot{}											%
+    \fancyfoot[C]{\thepage}								%
+  \renewcommand{\headrulewidth}{0pt}						%
+  \renewcommand\footrulewidth{0pt}						%
+}
+
+\fancypagestyle{Form2}{% <==========================================
+  \fancyhf{}% <========================================= Clear header/footer
+\renewcommand{\headrulewidth}{0pt}						%
+
+  \fancyhead{}%
+  \fancyfoot{}											%
+  \fancyfoot[C]{\thepage}								%
+  \renewcommand{\headrulewidth}{0pt}					%
+  \renewcommand\footrulewidth{0pt}						%
+}
+
+\usepackage{url}										%use urls in references
+
+\usepackage [autostyle, english = american]{csquotes}	%use quotation standard 
+\MakeOuterQuote{"}										%sign instead of "
+
+\usepackage{hyperref}									%to create hyperlink
+
+\begin{document}
+\nocite{*}			%print all citation even non-signed ones
+\frontmatter        %print the front pages number as roman
+\savegeometry{Mem}	%save the original margin
+
+\begin{titlepage}
+
+\thispagestyle{fancy}
+	\begin{center}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.98in,height=1.26in]{PNG/aabu}
+	\end{figure}
+	\begin{Arabic}
+	\size{16}{جامعة آل البيت}
+	\end{Arabic}
+\\	\size{16}{Al al-Bayt University}
+	\end{center}
+
+\vspace{0.1in}
+
+\begin{center}
+\size{26}{\textbf{Thesis Title}}
+\\ \begin{Arabic}\size{24}{\textbf{عنوان الرسالة}}\end{Arabic}
+\end{center}
+
+\vspace{0.2in}
+
+\begin{center}
+\size{14}{by}
+\\ \size{18}{Students name}
+\\ \begin{Arabic}
+\size{18}{اسم الطالب}
+\end{Arabic}
+
+\vspace{0.2in}
+
+\size{14}Supervisor:
+\\\size{18}{Prof. (Supervisor name)}
+\end{center}
+
+\vspace{1.5in}
+
+\begin{center}
+\size{14}{This Thesis was Submitted in Partial Fulfillment of the Requirements for the \\ \textbf{Master's Degree in Mathematics}}
+\end{center}
+
+\vspace{0.1in}
+
+\begin{center}
+\size{14}{Deanship of Graduate Studies
+\\ Al al-Bayt University}
+\end{center}
+
+\end{titlepage}
+\clearpage
+
+\thispagestyle{Form1}
+
+	\begin{figure}[H]
+	\hbox{\hspace{-1.45em}\includegraphics[width=0.56in,height=0.72in,right]{PNG/aabu}}
+	\end{figure}
+	\begin{flushleft}
+	\begin{Arabic}
+	\size{16}{جامعة آل البيت
+	\\ عمادة الدراسات 
+\\\hspace{1.6em}العليا}
+	\end{Arabic}
+	\end{flushleft}
+
+	\begin{flushleft}
+	\hspace{0.3in} 
+	\begin{Arabic}
+	\size{14}{نموذج تفويض} 
+	\end{Arabic}
+	\end{flushleft}
+
+\vspace{0.3in}
+
+\begin{center}
+\begin{Arabic}
+\size{14}{أنا (اسم الطالب)}
+\vspace{0.3in}
+\\ \size{14}{أفوض جامعة آل البيت بتزويد نُسخ من رسالتي، للمكتبات أو المؤسسات أو الهيئات أو الأشخاص عند طلبهم حسب التعليمات النافذة في الجامعة.}
+\end{Arabic}
+\end{center}
+
+\vspace{1.3in}
+
+\begin{Arabic}
+\size{14}{التوقيع}: ............................ \hspace{1.4in} \size{14}{التاريخ}: ............................
+\end{Arabic}
+
+
+\clearpage
+
+
+\thispagestyle{Form2}
+
+	\begin{figure}[H]
+	\hbox{\hspace{-1.45em}\includegraphics[width=0.56in,height=0.72in,right]{PNG/aabu}}
+	\end{figure}
+	\begin{flushleft}
+	\begin{Arabic}
+	\size{16}{جامعة آل البيت
+	\\ عمادة الدراسات 
+\\\hspace{1.6em}العليا}
+	\end{Arabic}
+	\end{flushleft}
+	
+\vspace{0.3in}
+
+\begin{Arabic}
+\size{14}{نموذج إقرار وإلتزام بقوانين جامعة آل البيت وأنظمتها وتعليماتها لطلبة الماجستير والدكتوراة}
+\vspace{0.3in}
+\\ \size{14}{أنا (اسم الطالب) \hspace{1.2in} الرقم الجامعي: \foreignlanguage{english}{Students number}
+\\ تخصص: الرياضيات \hspace{1.4in} كلية: العلوم
+\\ أُعلنُ بأني قد التزمت بقوانين جامعة آل البيت وأنظمتها وتعليماتها وقراراتها السارية المفعول المتعلقة بإعداد رسائل الماجستير والدكتوراة عندما قمت شخصيًا بإعداد رسالتي بعنوان:}
+\end{Arabic}
+
+\centerline{\size{14}{Thesis Title}}
+
+\centerline{\begin{Arabic}\size{14}{عنوان الرسالة}\end{Arabic}}
+
+\begin{Arabic}
+\justify
+\size{14}{وذلك بما ينسجم مع الأمانة العلمية المتعارف عليها في كتابة الرسائل والأطاريح العلمية. كما أنني أُعلن بأن رسالتي هذه غير منقولة أو مستلة من رسائل أو أطاريح أو كتب أو أبحاث أو أي منشورات علمية تم نشرها أو تخزينها في أي وسيلة اعلامية، وتأسيساً على ما تقدم فأنني اتحمل المسؤولية بأنواعها كافة فيما لو تبين غير ذلك بما فيه حق مجلس العمداء في جامعة آل البيت بإلغاء قرار منحي الدرجة العلمية التي حصلت عليها وسحب شهادة التخرّج مني بعد صدورها دون أن يكون لي الحق  في التظلم أو الأعتراض أو الطعن بأي صورة كانت في القرار الصادر عن مجلس العمداء بهذا الصدد.}
+\end{Arabic}
+
+\vspace{0.5in}
+
+\begin{Arabic}
+\size{14}{التوقيع}: ............................ \hspace{1.4in} \size{14}{التاريخ}: ............................
+\end{Arabic}
+
+
+
+
+\clearpage
+\phantomsection  
+\addcontentsline{toc}{chapter}{Committee Decision}	%add to toc
+%\setcounter{page}{2} %set page numbering to begin here from 2
+\centerline{\size{16}{Committee Decision}}
+\vspace{0.25in}
+\noindent \textbf{This Thesis ("Thesis Title") was Successfully Defended and Approved on $24^{th}$ May 2021}
+
+\vspace{0.25in}
+
+\hspace{0.15in} \textbf{Examination Committee} \hspace{2in} \textbf{Signature}
+
+\vspace{0.5in}
+
+\noindent Prof. ***, (Supervisor)
+\\Prof. of Mathematics \hfill ............................................................
+\\Dep. of Mathematics, Al al-Bayt University
+\\***@aabu.edu.jo
+
+\vspace{0.5in}
+
+\noindent Prof. ***, (Member)
+\\Prof. of Mathematics \hfill ............................................................
+\\Dep. of Mathematics, Al al-Bayt University
+\\***@aabu.edu.jo
+
+\vspace{0.5in}
+
+\noindent Dr. ***, (External Member)
+\\Ass. Prof. of Mathematics \hfill ............................................................
+\\Dep. of Mathematics, *** University
+\\***@yahoo.com
+
+\vspace{0.5in}
+
+
+
+\clearpage
+
+\newgeometry{top=1.5in}	%define new margin
+\phantomsection  
+\addcontentsline{toc}{chapter}{Dedication}	%add to toc
+
+\centerline{\large \texttt{Dedication}}
+\vfill
+\begin{center}
+Your Dedication
+\end{center}
+\vfill
+\vspace{1.5in}
+\clearpage
+
+\phantomsection  
+\addcontentsline{toc}{chapter}{Acknowledgments} %add to toc
+
+\centerline{\large \texttt{Acknowledgments}}
+\vspace{0.5in}
+I praise Allah, unless his help and strengthening me I did not be able to accomplish this work done. Then I thank my supervisor prof. *** for his help and supporting me to get this work done. Also, I thank the discussion committee and all faculty members especially of mathematics department. Finally, I thank and appreciate my parents, grandparents, family, and friends, and every one who did support me since ever.
+
+\clearpage
+
+\loadgeometry{Mem} %load the original margin
+\phantomsection  
+\addcontentsline{toc}{chapter}{Notations} %add to toc
+
+\centerline{\large \texttt{Notations:}}
+\vspace{0.5in}
+\begin{align*}
+\text{your notations}
+\end{align*}
+
+\clearpage
+
+\tableofcontents
+
+\clearpage
+
+\phantomsection  
+\addcontentsline{toc}{chapter}{Abstract} % add to toc
+
+\centerline{\size{16}{Thesis Title}}
+\vspace{0.5in}
+\begin{center}
+\size{14}{A Master Thesis By
+\\Your Name}
+\end{center}
+\vspace{0.5in}
+\begin{center}
+\size{14}{Supervisor:
+\\Prof. (Supervisor name)}
+\end{center}
+\vspace{0.5in}
+\begin{center}
+\size{14}{Department of Mathematics, Al al-Bayt University, 2021}
+\end{center}
+\vspace{1in}
+\centerline{\size{18}{ \texttt{Abstract}}}
+\vspace{0.5in}
+
+(Your Abstract)
+
+\clearpage
+
+\loadgeometry{Mem}
+\phantomsection  
+\addcontentsline{toc}{chapter}{Arabic Abstract} %add to toc
+
+\begin{center}
+\begin{Arabic}
+\size{18}{عنوان الرسالة}
+\end{Arabic}
+\end{center}
+\vspace{0.5in}
+\begin{center}
+\begin{Arabic}
+\size{14}{رسالة ماجستير قدّمت من قبل
+\\ اسم الطالب}
+\end{Arabic}
+\end{center}
+\vspace{0.5in}
+\begin{center}
+\begin{Arabic}
+\size{14}{المشرف:
+\\أ.د. (اسم المشرف)}
+\end{Arabic}
+\end{center}
+\vspace{0.5in}
+\begin{center}
+\begin{Arabic}
+\size{14}{قسم الرياضيات، جامعة آل البيت، \foreignlanguage{english}{2021}م}
+\end{Arabic}
+\end{center}
+\vspace{1in}
+\begin{center}
+\begin{Arabic}
+\size{18}{ملخص}
+\end{Arabic}
+\end{center}
+\vspace{0.5in}
+\begin{center}
+\begin{Arabic}
+\size{14}{الملخص بالعربي
+}\end{Arabic}
+\end{center}
+
+
+\clearpage
+
+\mainmatter %begin numbering with arabic numbers
+\phantomsection  
+\addcontentsline{toc}{chapter}{Foreword}
+
+\centerline{\texttt{Introduction}}
+
+
+Intro
+
+\textbf{Chapter one: Prerequisites and Preliminaries}
+\\Some essential definitions, notations, and results related to *** were represented, which is needed to accomplish our investigation and research.
+
+\textbf{Chapter two: ***}
+\\Some properties, theorems, and results about *** have been considered, which was the inspiration to find our results.
+
+\textbf{Chapter three: More Results and Theorems about ***}
+\\We did an investigation about 
+
+\chapter{Prerequisites and Preliminaries}
+
+
+
+\renewcommand{\bibname}{References}
+\bibliography{ref}  %Replace 'ref' by your bib file, or edit the existing file
+\bibliographystyle{acm}
+
+\end{document}
